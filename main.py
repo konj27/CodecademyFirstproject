@@ -1,16 +1,29 @@
-# This is a sample Python script.
+import csv
+import math
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+ages = []
+sexes = []
+bmis = []
+num_children = []
+smoker_statuses = []
+regions = []
+insurance_charges = []
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def sort_out_cols(col_name, lst):
+    with open("insurance.csv") as data:
+        data_dictionary = csv.DictReader(data)
+        for row in data_dictionary:
+            lst.append(row[col_name])
+    return lst
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+sort_out_cols("age", ages)
+sort_out_cols("sex", sexes)
+sort_out_cols("bmi", bmis)
+sort_out_cols("children", num_children)
+sort_out_cols("smoker", smoker_statuses)
+sort_out_cols("region", regions)
+sort_out_cols("charges", insurance_charges)
+num_ages = [int(i) for i in ages]
+print(sum(num_ages)/len(num_ages))
